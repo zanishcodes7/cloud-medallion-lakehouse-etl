@@ -1,5 +1,13 @@
 [
   {
+    "timestamp": "2026-11-16 11:06:42",
+    "layer": "Silver Transform",
+    "status": "Success",
+    "rows_processed": 19,
+    "anomalies_detected": 6,
+    "details": "Cleaned 25 rows. Quarantined 6 invalid records. Saved to Parquet."
+  },
+  {
     "timestamp": "2026-11-16 10:59:06",
     "layer": "Silver Transform",
     "status": "Success",
