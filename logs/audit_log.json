@@ -1,0 +1,130 @@
+[
+  {
+    "timestamp": "2026-11-16 10:59:06",
+    "layer": "Silver Transform",
+    "status": "Success",
+    "rows_processed": 19,
+    "anomalies_detected": 6,
+    "details": "Cleaned 25 rows. Quarantined 6 invalid records. Saved to Parquet."
+  },
+  {
+    "timestamp": "2026-11-16 10:10:27",
+    "layer": "Silver Transform",
+    "status": "Success",
+    "rows_processed": 19,
+    "anomalies_detected": 6,
+    "details": "Cleaned 25 rows. Quarantined 6 invalid records. Saved to Parquet."
+  },
+  {
+    "timestamp": "2026-11-16 10:00:36",
+    "layer": "Silver Transform",
+    "status": "Success",
+    "rows_processed": 3,
+    "anomalies_detected": 2,
+    "details": "Cleaned 5 rows. Quarantined 2 invalid records. Saved to Parquet."
+  },
+  {
+    "timestamp": "2026-11-16 09:59:28",
+    "layer": "Silver Transform",
+    "status": "Success",
+    "rows_processed": 3,
+    "anomalies_detected": 2,
+    "details": "Cleaned 5 rows. Quarantined 2 invalid records. Saved to Parquet."
+  },
+  {
+    "timestamp": "2026-11-16 09:55:57",
+    "layer": "Silver Transform",
+    "status": "Success",
+    "rows_processed": 3,
+    "anomalies_detected": 2,
+    "details": "Cleaned 5 rows. Quarantined 2 invalid records. Saved to Parquet."
+  },
+  {
+    "timestamp": "2026-11-16 09:54:36",
+    "layer": "Gold Modeling",
+    "status": "Success",
+    "rows_processed": 221,
+    "anomalies_detected": 0,
+    "details": "Built Kimball Star Schema: 1 Fact table (221 rows) and 3 Dimension tables."
+  },
+  {
+    "timestamp": "2026-11-16 09:54:36",
+    "layer": "Silver Transform",
+    "status": "Success",
+    "rows_processed": 221,
+    "anomalies_detected": 15,
+    "details": "Cleaned 250 rows. Quarantined 15 invalid records. Saved to Parquet."
+  },
+  {
+    "timestamp": "2026-11-14 20:23:38",
+    "layer": "Gold Modeling",
+    "status": "Success",
+    "rows_processed": 221,
+    "anomalies_detected": 0,
+    "details": "Built Kimball Star Schema: 1 Fact table (221 rows) and 3 Dimension tables."
+  },
+  {
+    "timestamp": "2026-11-14 20:23:38",
+    "layer": "Silver Transform",
+    "status": "Success",
+    "rows_processed": 221,
+    "anomalies_detected": 15,
+    "details": "Cleaned 250 rows. Quarantined 15 invalid records. Saved to Parquet."
+  },
+  {
+    "timestamp": "2026-11-14 20:23:15",
+    "layer": "Gold Modeling",
+    "status": "Success",
+    "rows_processed": 221,
+    "anomalies_detected": 0,
+    "details": "Built Kimball Star Schema: 1 Fact table (221 rows) and 3 Dimension tables."
+  },
+  {
+    "timestamp": "2026-11-14 20:23:15",
+    "layer": "Silver Transform",
+    "status": "Success",
+    "rows_processed": 221,
+    "anomalies_detected": 15,
+    "details": "Cleaned 250 rows. Quarantined 15 invalid records. Saved to Parquet."
+  },
+  {
+    "timestamp": "2026-11-14 20:18:17",
+    "layer": "Gold Modeling",
+    "status": "Success",
+    "rows_processed": 221,
+    "anomalies_detected": 0,
+    "details": "Built Kimball Star Schema: 1 Fact table (221 rows) and 3 Dimension tables."
+  },
+  {
+    "timestamp": "2026-11-14 20:18:02",
+    "layer": "Silver Transform",
+    "status": "Success",
+    "rows_processed": 221,
+    "anomalies_detected": 15,
+    "details": "Cleaned 250 rows. Quarantined 15 invalid records. Saved to Parquet."
+  },
+  {
+    "timestamp": "2026-11-14 19:55:04",
+    "layer": "Gold Modeling",
+    "status": "Success",
+    "rows_processed": 221,
+    "anomalies_detected": 0,
+    "details": "Built Kimball Star Schema: 1 Fact table (221 rows) and 3 Dimension tables."
+  },
+  {
+    "timestamp": "2026-11-14 19:51:45",
+    "layer": "Silver Transform",
+    "status": "Success",
+    "rows_processed": 221,
+    "anomalies_detected": 15,
+    "details": "Cleaned 250 rows. Quarantined 15 invalid records. Saved to Parquet."
+  },
+  {
+    "timestamp": "2026-11-14 19:44:37",
+    "layer": "Bronze Ingestion",
+    "status": "Success",
+    "rows_processed": 250,
+    "anomalies_detected": 0,
+    "details": "Ingested batch 3cf9a2f5 (250 raw rows) from ERP_SALES_API_V2"
+  }
+]

@@ -1,0 +1,26 @@
+order_id,customer_id,customer_email,region,product_sku,product_name,category,quantity,unit_price,order_status,order_timestamp
+ORD-1001,CUST-201,client_201@techcorp.io,UK-London,PRD-101,Enterprise Cloud Node,Infrastructure,4,450.00,COMPLETED,2026-11-16 08:15:00
+ORD-1002,CUST-202,client_202@techcorp.io,  uk-london ,PRD-102,Data Warehouse Seat,Analytics,10,120.00,completed,2026-11-16 08:30:00
+ORD-1003,CUST-203,client_203@techcorp.io,EU-Frankfurt,PRD-103,ETL Connector Pack,Integration,-5,85.50,PENDING,2026-11-16 09:00:00
+ORD-1004,CUST-204,client_204@techcorp.io,US-East,PRD-104,AI Governance Module,Security,2,,CANCELLED,2026-11-16 09:10:00
+ORD-1005,CUST-205,client_205@techcorp.io,UK-Manchester,PRD-105,BI Semantic License,Analytics,6,95.00,COMPLETED,2026-11-16 09:45:00
+ORD-1006,CUST-206,client_206@techcorp.io,US-West,PRD-101,Enterprise Cloud Node,Infrastructure,3,450.00,COMPLETED,2026-11-16 10:00:00
+ORD-1007,CUST-207,client_207@techcorp.io,eu-frankfurt,PRD-102,Data Warehouse Seat,Analytics,15,120.00,COMPLETED,2026-11-16 10:20:00
+ORD-1008,CUST-208,client_208@techcorp.io,APAC-Tokyo,PRD-106,Serverless Gateway,Infrastructure,0,210.00,PENDING,2026-11-16 10:45:00
+ORD-1009,CUST-209,client_209@techcorp.io,CA-Toronto,PRD-107,Vector DB Cluster,Database,4,300.00,COMPLETED,2026-11-16 11:00:00
+ORD-1010,CUST-210,client_210@techcorp.io,uk-london,PRD-103,ETL Connector Pack,Integration,8,85.50,COMPLETED,2026-11-16 11:15:00
+ORD-1011,CUST-211,client_211@techcorp.io,US-East,PRD-108,Kubernetes Master Node,Infrastructure,2,550.00,PROCESSING,2026-11-16 11:30:00
+ORD-1012,CUST-212,client_212@techcorp.io,EU-Paris,PRD-104,AI Governance Module,Security,-1,150.00,CANCELLED,2026-11-16 11:45:00
+ORD-1013,CUST-213,client_213@techcorp.io,APAC-Sydney,PRD-109,GraphQL Gateway,Integration,7,175.00,COMPLETED,2026-11-16 12:00:00
+ORD-1014,CUST-214,client_214@techcorp.io,US-Central,PRD-102,Data Warehouse Seat,Analytics,5,,COMPLETED,2026-11-16 12:15:00
+ORD-1015,CUST-215,client_215@techcorp.io,UK-London,PRD-110,Stream Processing Engine,Database,12,380.00,COMPLETED,2026-11-16 12:30:00
+ORD-1016,CUST-216,client_216@techcorp.io,US-West,PRD-105,BI Semantic License,Analytics,9,95.00,PENDING,2026-11-16 12:45:00
+ORD-1017,CUST-217,client_217@techcorp.io,eu-frankfurt,PRD-107,Vector DB Cluster,Database,3,300.00,COMPLETED,2026-11-16 13:00:00
+ORD-1018,CUST-218,client_218@techcorp.io,CA-Vancouver,PRD-101,Enterprise Cloud Node,Infrastructure,6,450.00,COMPLETED,2026-11-16 13:15:00
+ORD-1019,CUST-219,client_219@techcorp.io,APAC-Tokyo,PRD-108,Kubernetes Master Node,Infrastructure,4,550.00,COMPLETED,2026-11-16 13:30:00
+ORD-1020,CUST-220,client_220@techcorp.io,US-East,PRD-103,ETL Connector Pack,Integration,11,85.50,COMPLETED,2026-11-16 13:45:00
+ORD-1021,CUST-221,client_221@techcorp.io,UK-Manchester,PRD-106,Serverless Gateway,Infrastructure,5,210.00,PENDING,2026-11-16 14:00:00
+ORD-1022,CUST-222,client_222@techcorp.io,EU-Berlin,PRD-109,GraphQL Gateway,Integration,8,175.00,COMPLETED,2026-11-16 14:15:00
+ORD-1023,CUST-223,client_223@techcorp.io,US-South,PRD-110,Stream Processing Engine,Database,-3,380.00,CANCELLED,2026-11-16 14:30:00
+ORD-1024,CUST-224,client_224@techcorp.io,APAC-Singapore,PRD-102,Data Warehouse Seat,Analytics,14,120.00,COMPLETED,2026-11-16 14:45:00
+ORD-1025,CUST-225,client_225@techcorp.io,UK-London,PRD-104,AI Governance Module,Security,7,150.00,COMPLETED,2026-11-16 15:00:00

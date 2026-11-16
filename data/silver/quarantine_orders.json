@@ -1,0 +1,80 @@
+[
+  {
+    "order_id":"ORD-1003",
+    "customer_id":"CUST-203",
+    "customer_email":"client_203@techcorp.io",
+    "region":"Eu-Frankfurt",
+    "product_sku":"PRD-103",
+    "product_name":"ETL Connector Pack",
+    "category":"Integration",
+    "quantity":-5,
+    "unit_price":85.5,
+    "order_status":"PENDING",
+    "order_timestamp":"2026-11-16 09:00:00"
+  },
+  {
+    "order_id":"ORD-1004",
+    "customer_id":"CUST-204",
+    "customer_email":"client_204@techcorp.io",
+    "region":"Us-East",
+    "product_sku":"PRD-104",
+    "product_name":"AI Governance Module",
+    "category":"Security",
+    "quantity":2,
+    "unit_price":null,
+    "order_status":"CANCELLED",
+    "order_timestamp":"2026-11-16 09:10:00"
+  },
+  {
+    "order_id":"ORD-1008",
+    "customer_id":"CUST-208",
+    "customer_email":"client_208@techcorp.io",
+    "region":"Apac-Tokyo",
+    "product_sku":"PRD-106",
+    "product_name":"Serverless Gateway",
+    "category":"Infrastructure",
+    "quantity":0,
+    "unit_price":210.0,
+    "order_status":"PENDING",
+    "order_timestamp":"2026-11-16 10:45:00"
+  },
+  {
+    "order_id":"ORD-1012",
+    "customer_id":"CUST-212",
+    "customer_email":"client_212@techcorp.io",
+    "region":"Eu-Paris",
+    "product_sku":"PRD-104",
+    "product_name":"AI Governance Module",
+    "category":"Security",
+    "quantity":-1,
+    "unit_price":150.0,
+    "order_status":"CANCELLED",
+    "order_timestamp":"2026-11-16 11:45:00"
+  },
+  {
+    "order_id":"ORD-1014",
+    "customer_id":"CUST-214",
+    "customer_email":"client_214@techcorp.io",
+    "region":"Us-Central",
+    "product_sku":"PRD-102",
+    "product_name":"Data Warehouse Seat",
+    "category":"Analytics",
+    "quantity":5,
+    "unit_price":null,
+    "order_status":"COMPLETED",
+    "order_timestamp":"2026-11-16 12:15:00"
+  },
+  {
+    "order_id":"ORD-1023",
+    "customer_id":"CUST-223",
+    "customer_email":"client_223@techcorp.io",
+    "region":"Us-South",
+    "product_sku":"PRD-110",
+    "product_name":"Stream Processing Engine",
+    "category":"Database",
+    "quantity":-3,
+    "unit_price":380.0,
+    "order_status":"CANCELLED",
+    "order_timestamp":"2026-11-16 14:30:00"
+  }
+]

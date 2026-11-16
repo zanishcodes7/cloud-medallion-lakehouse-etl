@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Medallion ETL - Enterprise Monitoring Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('border-amber-700', 'text-amber-900', 'bg-amber-100'));
+            document.getElementById(tabId).classList.remove('hidden');
+            document.getElementById('btn-' + tabId).classList.add('border-amber-700', 'text-amber-900', 'bg-amber-100');
+        }
+    </script>
+</head>
+<body class="bg-[#fcf8f2] text-[#2b2118] min-h-screen font-sans">
+
+    <!-- Warm Top Header -->
+    <header class="bg-[#f4ebe1] border-b border-amber-200 px-6 py-4 shadow-sm">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div>
+                <h1 class="text-xl font-bold tracking-wider text-[#7a4f2e]">🟤 Cloud-Scale Medallion Lakehouse</h1>
+                <p class="text-xs text-[#8c6d53]">Architecture: Bronze (Raw) → Silver (Cleansed Parquet) → Gold (Kimball Star Schema)</p>
+            </div>
+            <div class="flex items-center space-x-3 shrink-0">
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-[#e6d5c3] text-[#5c3a21] border border-amber-300">
+                    ● Live Monitoring Active
+                </span>
+                <button onclick="location.reload()" class="bg-[#9c6644] hover:bg-[#7f5236] text-white text-xs px-4 py-2 rounded-lg font-semibold transition shadow-sm">
+                    Refresh Dashboard
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- File Upload Banner -->
+    <section class="max-w-7xl mx-auto px-6 pt-6">
+        <div class="bg-[#f4ebe1] border border-amber-200 rounded-lg p-5 shadow-sm flex flex-col md:flex-row justify-between items-center gap-4">
+            <div>
+                <h3 class="text-sm font-bold text-[#5c3a21]">📂 Upload Custom Data File</h3>
+                <p class="text-xs text-[#8c6d53]">Upload your own CSV, Excel, or JSON dataset to automatically run through the Bronze, Silver, and Gold pipeline.</p>
+            </div>
+            <form action="/" method="POST" enctype="multipart/form-data" class="flex flex-wrap items-center gap-3">
+                <input type="file" name="file" accept=".csv, .json, .xlsx, .xls" required class="text-xs text-[#8c6d53] file:mr-3 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-[#e6d5c3] file:text-[#5c3a21] hover:file:bg-[#d8c2ab] cursor-pointer">
+                <button type="submit" class="bg-[#9c6644] hover:bg-[#7f5236] text-white text-xs px-4 py-2 rounded-lg font-semibold transition shadow-sm shrink-0">
+                    Upload & Process Pipeline
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-6 py-8 space-y-8">
+
+        <!-- Navigation Tabs -->
+        <div class="flex flex-wrap border-b border-amber-200 gap-2 text-sm font-semibold">
+            <button onclick="switchTab('audit')" id="btn-audit" class="tab-btn pb-3 px-4 rounded-t-lg border-b-2 border-amber-700 text-amber-900 bg-amber-100 transition">📋 Telemetry & Audit Logs</button>
+            <button onclick="switchTab('bronze')" id="btn-bronze" class="tab-btn pb-3 px-4 rounded-t-lg border-b-2 border-transparent text-[#8c6d53] hover:text-[#2b2118] transition">🥉 Bronze (Raw Data)</button>
+            <button onclick="switchTab('silver')" id="btn-silver" class="tab-btn pb-3 px-4 rounded-t-lg border-b-2 border-transparent text-[#8c6d53] hover:text-[#2b2118] transition">🥈 Silver (Cleansed & Quarantine)</button>
+            <button onclick="switchTab('gold')" id="btn-gold" class="tab-btn pb-3 px-4 rounded-t-lg border-b-2 border-transparent text-[#8c6d53] hover:text-[#2b2118] transition">🥇 Gold (Star Schema)</button>
+        </div>
+
+        <!-- TAB 1: AUDIT LOGS -->
+        <div id="audit" class="tab-content space-y-6">
+            <div class="bg-[#f4ebe1] border border-amber-200 rounded-lg shadow-sm overflow-hidden">
+                <div class="px-6 py-4 border-b border-amber-200 flex justify-between items-center bg-[#efe3d5]">
+                    <h2 class="text-lg font-semibold text-[#5c3a21]">Pipeline Audit Trail</h2>
+                    <span class="text-xs text-[#8c6d53] font-mono">logs/audit_log.json</span>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm text-[#2b2118]">
+                        <thead class="bg-[#efe3d5] text-[#7a4f2e] text-xs uppercase tracking-wider border-b border-amber-200">
+                            <tr>
+                                <th class="px-6 py-3">Timestamp</th>
+                                <th class="px-6 py-3">Layer</th>
+                                <th class="px-6 py-3">Status</th>
+                                <th class="px-6 py-3">Rows Processed</th>
+                                <th class="px-6 py-3">Anomalies Isolated</th>
+                                <th class="px-6 py-3">Details</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-amber-100">
+                            {% for log in logs %}
+                            <tr class="hover:bg-[#efe3d5] transition">
+                                <td class="px-6 py-4 font-mono text-xs text-[#8c6d53]">{{ log.timestamp }}</td>
+                                <td class="px-6 py-4 font-semibold text-[#5c3a21]">{{ log.layer }}</td>
+                                <td class="px-6 py-4"><span class="px-2 py-1 rounded text-xs font-medium bg-[#e6d5c3] text-[#5c3a21] border border-amber-300">{{ log.status }}</span></td>
+                                <td class="px-6 py-4 font-mono">{{ log.rows_processed }}</td>
+                                <td class="px-6 py-4 font-mono text-amber-800 font-semibold">{{ log.anomalies_detected }}</td>
+                                <td class="px-6 py-4 text-[#8c6d53] text-xs">{{ log.details }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 2: BRONZE DATA -->
+        <div id="bronze" class="tab-content hidden space-y-6">
+            <div class="bg-[#f4ebe1] border border-amber-200 rounded-lg p-6 shadow-sm space-y-4">
+                <h2 class="text-lg font-semibold text-[#9c6644]">🥉 Bronze Layer: Raw Ingestion Preview (Sample 10 Rows)</h2>
+                <p class="text-xs text-[#8c6d53]">Raw incoming data records featuring unvalidated regions, mixed date formats, and embedded lineage metadata.</p>
+                <div class="overflow-x-auto border border-amber-200 rounded-lg">
+                    <table class="w-full text-left text-xs text-[#2b2118] font-mono">
+                        <thead class="bg-[#efe3d5] text-[#7a4f2e] uppercase border-b border-amber-200">
+                            <tr>
+                                {% if bronze_data %}
+                                    {% for key in bronze_data[0].keys() %}
+                                        <th class="p-3">{{ key }}</th>
+                                    {% endfor %}
+                                {% else %}
+                                    <th class="p-3">No Bronze Data Available</th>
+                                {% endif %}
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-amber-100 bg-[#f4ebe1]">
+                            {% for row in bronze_data %}
+                            <tr class="hover:bg-[#efe3d5]">
+                                {% for val in row.values() %}
+                                    <td class="p-3">{{ val }}</td>
+                                {% endfor %}
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3: SILVER DATA & QUARANTINE -->
+        <div id="silver" class="tab-content hidden space-y-6">
+            <div class="bg-[#f4ebe1] border border-amber-200 rounded-lg p-6 shadow-sm space-y-4">
+                <h2 class="text-lg font-semibold text-[#7a4f2e]">🥈 Silver Layer: Cleansed Parquet Data (Sample 10 Rows)</h2>
+                <p class="text-xs text-[#8c6d53]">Duplicates removed, text fields standardized, data types cast, and formatted as high-performance Parquet.</p>
+                <div class="overflow-x-auto border border-amber-200 rounded-lg">
+                    <table class="w-full text-left text-xs text-[#2b2118] font-mono">
+                        <thead class="bg-[#efe3d5] text-[#7a4f2e] uppercase border-b border-amber-200">
+                            <tr>
+                                {% if silver_data %}
+                                    {% for key in silver_data[0].keys() %}
+                                        <th class="p-3">{{ key }}</th>
+                                    {% endfor %}
+                                {% else %}
+                                    <th class="p-3">No Silver Data Available</th>
+                                {% endif %}
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-amber-100 bg-[#f4ebe1]">
+                            {% for row in silver_data %}
+                            <tr class="hover:bg-[#efe3d5]">
+                                {% for val in row.values() %}
+                                    <td class="p-3">{{ val }}</td>
+                                {% endfor %}
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Quarantine Section -->
+            <div class="bg-[#f4ebe1] border border-red-200 rounded-lg p-6 shadow-sm space-y-4">
+                <h2 class="text-lg font-semibold text-red-700">🚨 Quarantined Anomalies (Isolated Bad Records)</h2>
+                <p class="text-xs text-[#8c6d53]">Records containing negative quantities or missing prices successfully intercepted by quality rules.</p>
+                <div class="overflow-x-auto border border-red-200 rounded-lg">
+                    <table class="w-full text-left text-xs text-[#2b2118] font-mono">
+                        <thead class="bg-red-100 text-red-800 uppercase border-b border-red-200">
+                            <tr>
+                                {% if quarantine_data %}
+                                    {% for key in quarantine_data[0].keys() %}
+                                        <th class="p-3">{{ key }}</th>
+                                    {% endfor %}
+                                {% else %}
+                                    <th class="p-3">No Quarantined Records</th>
+                                {% endif %}
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-red-100 bg-[#f4ebe1]">
+                            {% for row in quarantine_data %}
+                            <tr class="hover:bg-red-50">
+                                {% for val in row.values() %}
+                                    <td class="p-3 text-red-900">{{ val }}</td>
+                                {% endfor %}
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 4: GOLD STAR SCHEMA -->
+        <div id="gold" class="tab-content hidden space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Fact Sales -->
+                <div class="bg-[#f4ebe1] border border-amber-200 rounded-lg p-6 shadow-sm space-y-4">
+                    <h2 class="text-lg font-semibold text-[#5c3a21]">📊 Fact Sales (Central Fact Table)</h2>
+                    <div class="overflow-x-auto border border-amber-200 rounded-lg">
+                        <table class="w-full text-left text-xs text-[#2b2118] font-mono">
+                            <thead class="bg-[#efe3d5] text-[#7a4f2e] uppercase border-b border-amber-200">
+                                <tr>
+                                    {% if fact_sales %}
+                                        {% for key in fact_sales[0].keys() %}
+                                            <th class="p-2">{{ key }}</th>
+                                        {% endfor %}
+                                    {% else %}
+                                        <th class="p-2">No Fact Data</th>
+                                    {% endif %}
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-amber-100 bg-[#f4ebe1]">
+                                {% for row in fact_sales %}
+                                <tr class="hover:bg-[#efe3d5]">
+                                    {% for val in row.values() %}
+                                        <td class="p-2">{{ val }}</td>
+                                    {% endfor %}
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Dim Product -->
+                <div class="bg-[#f4ebe1] border border-amber-200 rounded-lg p-6 shadow-sm space-y-4">
+                    <h2 class="text-lg font-semibold text-[#9c6644]">🏷️ Dimension: Product Catalog</h2>
+                    <div class="overflow-x-auto border border-amber-200 rounded-lg">
+                        <table class="w-full text-left text-xs text-[#2b2118] font-mono">
+                            <thead class="bg-[#efe3d5] text-[#7a4f2e] uppercase border-b border-amber-200">
+                                <tr>
+                                    {% if dim_product %}
+                                        {% for key in dim_product[0].keys() %}
+                                            <th class="p-2">{{ key }}</th>
+                                        {% endfor %}
+                                    {% else %}
+                                        <th class="p-2">No Dimension Data</th>
+                                    {% endif %}
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-amber-100 bg-[#f4ebe1]">
+                                {% for row in dim_product %}
+                                <tr class="hover:bg-[#efe3d5]">
+                                    {% for val in row.values() %}
+                                        <td class="p-2">{{ val }}</td>
+                                    {% endfor %}
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="text-center py-6 text-xs text-[#8c6d53] border-t border-amber-200 mt-12 bg-[#f4ebe1]">
+        Cloud Medallion ETL Architecture • Designed for Enterprise Data Engineering Portfolios
+    </footer>
+
+</body>
+</html>
