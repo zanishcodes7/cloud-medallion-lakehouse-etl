@@ -2,6 +2,11 @@
 
 An enterprise-grade, end-to-end data engineering pipeline and monitoring dashboard built to demonstrate modern data lakehouse architecture, automated data quality governance, and dimensional modeling.
 
+
+https://github.com/user-attachments/assets/32b9caae-1ae7-40ab-aa21-cf081da9da1a
+
+
+
 ---
 
 ## 🏗️ Architecture Overview
